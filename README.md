@@ -13,3 +13,6 @@ A timetable scheduler for students at Hanoi University of Science and Technology
 ## TODO List
 * Add instructions to run the code
 * Optimize with different solver (Genetic Algorithm, Heuristic,...)
+
+## Credits
+* Weekly schedule UI was built on the foundation of <a href="https://codyhouse.co/gem/schedule-template">CodyHouse Schedule Template </a>
