@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/front_page.css">
+  <title>Schedule Template | CodyHouse</title>
+</head>
+<body>
+  <header class="header-page">
+    <img src="../../static/new_logo.png" alt="School Logo">
+    <h1 id="timetable-title">Thời khóa biểu</h1>
+    <a href="{{ url_for('front_page') }}" class="home-button">Trang chủ</a>
+    <a href="{{ url_for('logout') }}" class="signout-button">Đăng xuất</a>
+  </header>
+  <header class="cd-main-header text-center flex flex-column flex-center margin-top-xs">
+    <h1 id="timetable-subtitle" class="text-md">Có những cách xếp khác</h1>
+    <div class="button-wrapper week-navigation margin-top-xs">
+      <button id="prev-index" class="alternate-schedule-button margin-left-xs">Cách xếp trước</button>
+      <button id="next-index" class="alternate-schedule-button margin-left-xs">Cách xếp sau</button>
+    </div>
+  </header>
+  <div class="cd-schedule cd-schedule--loading margin-top-xs margin-bottom-xs js-cd-schedule">
+    <div class="cd-schedule__timeline">
+      <ul>
+        <li><span>06:00</span></li>
+        <li><span>06:30</span></li>
+        <li><span>07:00</span></li>
+        <li><span>07:30</span></li>
+        <li><span>08:00</span></li>
+        <li><span>08:30</span></li>
+        <li><span>09:00</span></li>
+        <li><span>09:30</span></li>
+        <li><span>10:00</span></li>
+        <li><span>10:30</span></li>
+        <li><span>11:00</span></li>
+        <li><span>11:30</span></li>
+        <li><span>12:00</span></li>
+        <li><span>12:30</span></li>
+        <li><span>13:00</span></li>
+        <li><span>13:30</span></li>
+        <li><span>14:00</span></li>
+        <li><span>14:30</span></li>
+        <li><span>15:00</span></li>
+        <li><span>15:30</span></li>
+        <li><span>16:00</span></li>
+        <li><span>16:30</span></li>
+        <li><span>17:00</span></li>
+        <li><span>17:30</span></li>
+      </ul>
+    </div> <!-- .cd-schedule__timeline -->
+  
+    <div class="cd-schedule__events">
+      <ul id = "schedule-week">
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ hai</span></div>
+  
+          <ul id = "schedule-Monday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ ba</span></div>
+  
+          <ul id = "schedule-Tuesday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ tư</span></div>
+  
+          <ul id = "schedule-Wednesday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ năm</span></div>
+  
+          <ul id = "schedule-Thursday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ sáu</span></div>
+  
+          <ul id = "schedule-Friday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Thứ bảy</span></div>
+  
+          <ul id = "schedule-Saturday">
+          </ul>
+        </li>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>Chủ nhật</span></div>
+  
+          <ul id = "schedule-Sunday">
+          </ul>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="cd-schedule-modal">
+      <header class="cd-schedule-modal__header">
+        <div class="cd-schedule-modal__content">
+          <span class="cd-schedule-modal__date"></span>
+          <h3 class="cd-schedule-modal__name"></h3>
+        </div>
+  
+        <div class="cd-schedule-modal__header-bg"></div>
+      </header>
+  
+      <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-info"></div>
+        <div class="cd-schedule-modal__body-bg"></div>
+      </div>
+  
+      <a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
+    </div>
+    <div class="cd-schedule__cover-layer"></div>
+    
+    
+  </div> <!-- .cd-schedule -->
+  <header class="cd-main-header text-center flex flex-column flex-center margin-top-xs">
+    <div class="button-wrapper margin-top-xs">
+      <button id="extract-class-code" class="margin-left-xs extract-button">Lấy mã lớp của thời khóa biểu</button>
+    </div>
+  </header>
+  <div id="extract-class-code-modal" class="extract-modal">
+    <div class="extract-modal-content">
+      <span id="close-extract-modal" class="close-btn">&times;</span>
+      <h2>Các mã lớp của thời khóa biểu</h2>
+      <textarea id="class-code-textarea" readonly></textarea>
+      <!-- <div id="extract-class-code-container">
+      </div> -->
+      <button id="copy-class-code" class="copy-button">Sao chép</button>
+    </div>
+  </div>
+  <script>
+    var timetable = {{timetable | tojson}};
+    var totalSchedules = {{total_schedules}};
+    var scheduleIndex = {{index}};
+    var opacityDict = {{opacity_dict | tojson}};
+    var zIndexDict = {{z_index_dict | tojson}};
+    let allClassCodes = [];
+    console.log(timetable);
+    console.log(totalSchedules);
+    console.log(scheduleIndex);
+    var days = Object.freeze(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+
+    function navigateToSchedule(selectedScheduleIndex) {
+      window.location.href = `/view/index${selectedScheduleIndex}`;
+    }
+    document.getElementById('prev-index').addEventListener('click', () => {
+      var previousIndex = scheduleIndex - 1;
+      if (previousIndex >= 0) {
+        navigateToSchedule(previousIndex);
+      }
+      else {
+        navigateToSchedule(totalSchedules - 1);
+      }
+    });
+    document.getElementById('next-index').addEventListener('click', () => {
+      var nextIndex = scheduleIndex + 1;
+      if (nextIndex < totalSchedules) {
+        navigateToSchedule(nextIndex);
+      }
+      else {
+        navigateToSchedule(0);
+      }
+    });
+    document.getElementById('extract-class-code').addEventListener('click', () => {
+      const classCodes = new Set();
+      for (let day of days) {
+        const classes = timetable[day];
+        if (classes) {
+          for (let interval in classes) {
+            for (let cls of classes[interval]) {
+              classCodes.add(cls[1]);
+            }
+          }
+        }
+      }
+      const classCodeArray = Array.from(classCodes);
+      const classCodeTextarea = document.getElementById("class-code-textarea");
+      classCodeTextarea.value = Array.from(classCodes).join(" ");
+      const modal = document.getElementById("extract-class-code-modal");
+      modal.style.display = "block";
+    });
+    document.getElementById("close-extract-modal").addEventListener("click", function () {
+      const modal = document.getElementById("extract-class-code-modal");
+      modal.style.display = "none";
+    });
+
+    document.getElementById("copy-class-code").addEventListener("click", function () {
+      const classCodeTextarea = document.getElementById("class-code-textarea");
+      classCodeTextarea.select();
+      document.execCommand("copy");
+    });
+
+    // Close modal if clicked outside
+    window.addEventListener("click", function (event) {
+      const modal = document.getElementById("extract-class-code-modal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+    function createScheduleForDay(day, classes) {
+      let dayHtml = ``;
+      if (classes != null) {
+        for (let interval in classes) {
+          let splittedInterval = interval.split("-");
+          let startTime = splittedInterval[0].trim();
+          let endTime = splittedInterval[1].trim(); 
+          let htmlContent = "";
+          console.log("Interval: ", interval);
+          for (let cls of classes[interval]) {
+            htmlContent += `${cls[0]} - ${cls[1]} - ${cls[2]}<br>\n Tuần: ${cls[3]}\n\n<br><br>`;
+            console.log("Class", cls);
+          }
+          console.log("Opacity:", opacityDict[day][interval])
+          dayHtml += `<li class="cd-schedule__event">
+                      <a data-start="${startTime}" data-end="${endTime}" data-event="event-${classes[interval][0][4]}" href="#0" style="--custom-opacity: ${opacityDict[day][interval]}; --custom-z-index: ${zIndexDict[day][interval]};">
+                        <em class="cd-schedule__name">${htmlContent}</em>
+                      </a>
+                    </li>\n`;
+        }
+      }
+      
+      // if (classes != null) {
+      //   classes.forEach(c => {
+      //   dayHtml += `<li class="cd-schedule__event">
+      //                 <a data-start="${c.start}" data-end="${c.end}" data-content="../templates/event-${c.course_code}" data-event="event-${c.style}" href="#0" style="--custom-opacity: ${0.7} --custom-margin-top: ${0} --custom-margin-right: ${0}">
+      //                   <em class="cd-schedule__name">${c.course_code} - ${c.class_code} - ${c.room}</em>
+      //                 </a>
+      //               </li>\n`;
+      //   });
+      // }
+      console.log(dayHtml)
+      return dayHtml;
+    }
+    function changeTimetableName() {
+      let timetableTitle = document.getElementById("timetable-title");
+      let timetableSubtitle = document.getElementById("timetable-subtitle");
+      let scheduleIndexContent = document.getElementById("schedule-index-title");
+
+      timetableTitle.textContent = `Bạn đang xem cách xếp ${scheduleIndex + 1}/${totalSchedules}`;
+      timetableSubtitle.textContent = `Có ${totalSchedules} cách sắp xếp dựa theo yêu cầu của bạn`; 
+      // timetableTitle.textContent= `Thời khóa biểu số ${scheduleIndex}`;
+    }
+    function populateWeeklySchedule() {
+      for (let day of days) {
+        let dayScheduleContainer = document.getElementById(`schedule-${day}`)
+        dayScheduleContainer.innerHTML = '';
+        let classes = timetable[day];
+        console.log(day, classes)
+        let dayScheduleHtml = createScheduleForDay(day, classes);
+        dayScheduleContainer.innerHTML += dayScheduleHtml;
+      }
+    }
+    // console.log(classInWeek);
+    populateWeeklySchedule();
+    changeTimetableName();
+  </script>
+  <script src="../../static/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="../../static/js/main.js"></script>
+</body>
+</html>

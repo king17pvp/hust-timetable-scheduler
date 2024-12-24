@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/front_page.css">
+  <title>Schedule Template | CodyHouse</title>
+</head>
+<body>
+  <header class="header-page">
+    <img src="../../static/new_logo.png" alt="School Logo">
+    <h1 id="timetable-title" class="text-xl">Rất tiếc, không có thời khóa biểu thỏa mãn yêu cầu của bạn</h1>
+    <a href="{{ url_for('front_page') }}" class="home-button">Trang chủ</a>
+  </header>
+  <header class="cd-main-header text-center flex flex-column flex-center margin-top-xs">
+    <h1 id="timetable-subtitle" class="text-md">Hãy quay lại trang chủ để chọn lại!!!</h1>
+  </header>
+  <script src="../../static/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="../../static/js/main.js"></script>
+</body>
+</html>

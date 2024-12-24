@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule Planner for HUST Students</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/front_page.css">
+</head>
+<body>
+
+  <header class="header-page">
+    <img src="../static/new_logo.png" alt="School Logo">
+    <a href="{{ url_for('logout') }}" class="signout-button">Đăng xuất</a>
+    <h1>Web sắp xếp thời khóa biểu cho sinh Viên Đại học Bách khoa Hà Nội</h1>
+    
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <section id="course-selection">
+      <h2 class="text-center container-header">Chọn các môn học bạn muốn học trong kỳ tới</h2>
+      <form action="/submit" method="POST" enctype="multipart/form-data">
+
+        <!-- File Upload Section -->
+        <div class="file-upload-wrapper">
+          <label class="file-upload-label" for="file-upload">
+            <i class="fas fa-upload"></i> Tải lên file TKB (Excel .xlsx)
+          </label>
+          <input type="file" id="file-upload" name="file-upload" accept=".xlsx" required>
+          <!-- <span class="file-upload-text" id="file-upload-text">Chưa có tệp nào được chọn</span> -->
+        </div>
+        <h3 class="file-upload-text text-center" id="file-upload-text"> Chưa có tệp nào được chọn </h3>
+
+        <!-- Course Code Input -->
+        <div class="course-code-input-wrapper">
+          <input type="text" id="course-code-input" name="course-code-input" placeholder="Nhập mã học phần bạn muốn học" autocomplete="off">
+          <div id="autocomplete-list-course" class="autocomplete-items-course"></div>
+          <div id="course-tags-container"></div>
+        </div>
+        <!-- Hidden input to store final course codes -->
+        <input type="hidden" id="course-codes" name="course-codes" value="">
+        <h3 id="total-credits" class="credit-counter">Tổng số tín chỉ: 0</h3>
+        <!-- Constraints Section -->
+        <h3>Các điều kiện lựa chọn</h3>
+
+        <div>
+          <label for="min-day-off">Muốn nghỉ ít nhất bao nhiêu ngày trong tuần (Không tính chủ nhật):</label>
+          <input type="number" id="min-day-off" name="min-day-off" min="0" max="6" value="0">
+        </div>
+        <div class="class-code-input-wrapper">
+          <input type="text" id="class-code-input" name="class-code-input" placeholder="Nhập mã lớp bạn muốn học" autocomplete="on">
+          <div id="autocomplete-list-class" class="autocomplete-items-class" ></div>
+          <div id="class-tags-container"></div>
+        </div>
+        <input type="hidden" id="class-codes" name="class-codes" value="">
+        <div class="hour-selection-container">
+          <!-- Earliest Class Hour Dropdown -->
+          <div class="earliest-class-hour ">
+            <input
+              type="text"
+              id="earliest-class-hour-input"
+              name="earliest-class-hour"
+              placeholder="Nhập giờ vào học sớm nhất"
+              autocomplete="on"
+              readonly
+              onclick="showDropdown('earliest-class-hour-list')"
+            />
+            <div id="earliest-class-hour-list" class="dropdown"></div>
+          </div>
+        
+          <!-- Latest Class Hour Dropdown -->
+          <div class="latest-class-hour">
+            <input
+              type="text"
+              id="latest-class-hour-input"
+              name="latest-class-hour"
+              placeholder="Nhập giờ kết thúc muộn nhất"
+              autocomplete="on"
+              readonly
+              onclick="showDropdown('latest-class-hour-list')"
+            />
+            <div id="latest-class-hour-list" class="dropdown"></div>
+          </div>
+        </div>
+        
+        
+        <!-- <div>
+          <label for="specific-class-code">Có mã lớp cụ thể nào muốn học không? (Ví dụ: 154355)</label>
+          <input type="text" id="specific-class-code" name="specific-class-code" placeholder="Nhập mã lớp học">
+        </div> -->
+
+        <!-- Submit Button -->
+         <div class="button-wrapper margin-top-xs">
+          <button type="submit">Xác nhận</button>
+         </div>
+        
+      </form>
+    </section>
+  </div>
+  <script src="../static/js/frontpage.js"></script>
+  
+</body>
+</html>

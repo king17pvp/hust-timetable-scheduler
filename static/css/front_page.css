@@ -1,0 +1,461 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header with Logo */
+.header-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: rgba(170, 29, 43, 0.9); /* Red Theme */
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-page img {
+  height: 60px; /* Adjust logo size */
+}
+
+.header-page h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  flex-grow: 1; 
+  margin-left: -55px; /* Compensate for the logo width */
+  color: white;
+}
+
+.signout-button {
+  position: absolute;
+  left: 92%;
+  top: 1.15%;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  color: #fff;
+  background-color: #e74c3c; /* Red theme */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.signout-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: scale(1.01);
+}
+
+.home-button {
+  position: absolute;
+  left: 4.5%; /* Position the button on the left side */
+  top: 1.15%;
+  transform: translateY(5%);
+  padding: 0.5em 1em;
+  font-size: 1em;
+  
+  background-color: #e74c3c; /* Red theme */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: scale(1.01);
+}
+
+/* Main Container */
+.container {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.container-header {
+  /* align-items:center; */
+  /* margin-left: 50px; */
+  margin-left: var(--margin-left, 50px);
+  font-size: 1.5rem;
+}
+.credit-counter {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+h2, h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #c62828; /* Red Theme */
+}
+h4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* or a specific height if needed */
+}
+
+/* File Upload */
+.file-upload-wrapper {
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.file-upload-label {
+  display: inline-block;
+  background-color: #c62828;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-upload-label:hover {
+  background-color: #b71c1c;
+}
+
+.file-upload-text {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #555;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Input Fields */
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #c62828;
+  outline: none;
+}
+
+/* Checkbox and Label Alignment */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+}
+
+/* Submit Button */
+button {
+  padding: 15px 60px;
+  font-size: 1.2rem;
+  background-color: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* max-width: 300px;  */
+}
+
+
+.button-wrapper {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center if needed */
+  width: 100%;
+  margin-top: 1rem;        /* Optional: Add spacing above */
+  margin-right: 1.5rem
+}
+.login-button-wrapper {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center if needed */
+  width: 100%;
+  margin-top: 1rem;        /* Optional: Add spacing above */
+  /* margin-right: 1.5rem */
+}
+button:hover {
+  background-color: #b71c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+}
+.course-code-input-wrapper, .class-code-input-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+.login-wrapper {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#course-code-input, #class-code-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+#login-username-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+  /* margin-bottom: var(--margin-bottom, 20); */
+}
+#login-password-input, #login-password-input-retype {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border-radius: 20px;
+  /* margin-bottom: var(--margin-bottom, 20); */
+}
+#course-tags-container, #class-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  gap: 8px;
+}
+a {
+  color: #d32f2f; /* Red color for the link */
+  text-decoration: none; /* Removes underline */
+  font-weight: bold; /* Makes the text bold */
+}
+
+a:hover {
+  text-decoration: underline; /* Adds underline on hover */
+  color: #b71c1c; /* Darker red on hover */
+}
+/* .course-tag {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da; 
+  color: #721c24; 
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
+.course-tag .close-btn {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #721c24;
+} */
+
+/* .course-tag .close-btn:hover {
+  color: #000;
+}  */
+/* Autocomplete Dropdown */
+.autocomplete-container-course {
+  position: relative;
+  width: 100%;
+}
+.autocomplete-container-class {
+  position: relative; 
+  top: 100px;
+  width: 100%;
+  margin-top: 15px;
+}
+#autocomplete-list-course  {
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#autocomplete-list-class {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 1rem;
+  /* margin-top: 100px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.autocomplete-items-course div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.autocomplete-items-class div {
+  padding: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.autocomplete-items-course div:hover {
+  background-color: #f8d7da; /* Light red hover effect */
+}
+
+.autocomplete-items-class div:hover {
+  background-color: #f8d7da; /* Light red hover effect */
+}
+
+/* Selected Tags */
+#selected-courses {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#selected-classes {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.course-tag {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da; /* Light Red */
+  color: #721c24; /* Dark Red */
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+.class-tag {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da; /* Light Red */
+  color: #721c24; /* Dark Red */
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.course-tag .close-btn {
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #721c24;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+.class-tag .close-btn {
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #721c24;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.course-tag .close-btn:hover {
+  background-color: #721c24;
+  color: #fff;
+}
+.class-tag .close-btn:hover {
+  background-color: #721c24;
+  color: #fff;
+}
+.autocomplete-item-course {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.autocomplete-item-class {
+  padding: 12px 12px;
+  cursor: pointer;
+}
+
+.autocomplete-item-course.active, .autocomplete-item-class.active {
+  background-color: #ffcccc; /* Highlighted background color for red theme */
+  color: #fff; /* White text for contrast */
+}
+.hour-selection-container {
+  display: flex;
+  
+  gap: 20px; /* Add spacing between the two dropdowns */
+  justify-content: space-between; /* Adjust alignment as needed */
+  width: 100%; /* Ensure container spans the full width */
+  height: 40px;
+}
+
+.earliest-class-hour, .latest-class-hour {
+  position: relative;
+  /* font-size: text; */
+  flex: 1; /* Make both dropdowns equally wide */
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  font-size: 1rem;  
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  display: none;
+}
+
+.dropdown-item {
+  padding: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}

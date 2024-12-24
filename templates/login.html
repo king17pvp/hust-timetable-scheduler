@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule Planner for HUST Students</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/front_page.css">
+</head>
+<body>
+
+  <header class="header-page">
+    <img src="../static/new_logo.png" alt="School Logo">
+    
+    <h1>Web sắp xếp thời khóa biểu cho sinh Viên Đại học Bách khoa Hà Nội</h1>
+    
+  </header>
+
+  <!-- Main Content -->
+  <div class="container flex-center">
+    <section id="login">
+      <h2 class="container-header flex-center" style="--margin-left: {0};">Trang Đăng nhập</h2>
+      <form action="/" method="POST" enctype="multipart/form-data">
+
+        <!-- Login info -->
+        <div class="login-wrapper">
+          <input type="text" id="login-username-input"style="--margin-bottom: {20};"  name="login-username-input" placeholder="Mã số sinh viên " autocomplete="off" required>
+          <input type="password" id="login-password-input" style="--margin-bottom: {20};" name="login-password-input" placeholder="Mật khẩu" autocomplete="off" required>
+        </div>
+        <h4 id="login-status"></h4>
+        <h4>Chưa có tài khoản? <a href="{{ url_for('register_page') }}">Đăng ký tại đây</a></h4>
+        
+        <!-- Submit Button -->
+         <div class="login-button-wrapper">
+          <button type="login">Đăng nhập</button>
+         </div>
+        
+      </form>
+    </section>
+  </div>  
+  <script>
+    var statusMessage = {{status_message | tojson}};
+    const loginStatus = document.getElementById('login-status');
+    loginStatus.textContent = statusMessage;
+  </script>
+</body>
+</html>
